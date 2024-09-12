@@ -28,6 +28,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 ```
 
 при выполнии команды потребуется ввести некоторые данные, там всё интуитивно понятно.
+
 ![screenshot](img/Screenshot_2.png)
 
 3. Открываем файл /etc/nginx/sites-available/default.  и добавляем следующие сточки:
@@ -39,12 +40,14 @@ ssl_certificate_key /etc/nginx/ssl/nginx-selfsigned.key;
 ```
 
 Командой `nginx -t` проверяем, что всё хорошо, после чего рестартуем nginx командой `service nginx restart`
+
 ![screenshot](img/Screenshot_3.png)
 
 4. Открываем браузер, поверяем работу сайта по https. Поскольку сертификат самоподписный, то браузер орёт на нас благим матом. Осознавая все последствия и соглашаясь на риски, видим желаемое:
+5. 
 ![screenshot](img/Screenshot_4.png)
 
-5. Добавляем принудительный редирект с 80 порта на 443. Для этого добавляем в файл конфигурации проверку на схему:
+6. Добавляем принудительный редирект с 80 порта на 443. Для этого добавляем в файл конфигурации проверку на схему:
 
 ```bash
 if ($scheme = http) {
@@ -94,7 +97,9 @@ vim /var/www/hellow1.ru/html/index.html
 cp /var/www/hellow1.ru/html/index.html /var/www/hellow2.ru/html/
 ```
 Далее открываем его и вносим изменения на свой вкус. Должно получиться так:
+
 ![screenshot](img/Screenshot_7.png)
+
 ![screenshot](img/Screenshot_8.png)
 
 9. Создание виртальных хостов.
@@ -106,10 +111,12 @@ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/hellow1.ru
 В качестве директории, где хранятся файлы сайт, укажем новый адрес, который мы создали: `root /var/www/hellow1.ru/html`.
 В строку `server_name` впишем наше доменное имя `hellow1.ru`.
 В итоге должен получиться следующий конфигурационный файл:
+
 ![screenshot](img/Screenshot_9.png)
 
 Теперь копируем конфигурационный файл для второго нашего сайта: `sudo cp /etc/nginx/sites-available/hellow1.ru /etc/nginx/sites-available/hellow2.ru`
 И не забываем указать правильный адрес в `root` и доменное имя в `server_name`.
+
 ![screenshot](img/Screenshot_10.png)
 
 10. Подключение виртуальных хостов
@@ -122,6 +129,7 @@ sudo ln -s /etc/nginx/sites-available/hellow2.ru /etc/nginx/sites-enabled/
 После этого проверим, всё ли мы правильно сделали. Для этого открываем браузер и переходим по адресам http://hellow1.ru и http://hellow2.ru.
 
 ![screenshot](img/Screenshot_14.png)
+
 ![screenshot](img/Screenshot_15.png)
 
 13. Добавим alias.
