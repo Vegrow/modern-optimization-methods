@@ -13,7 +13,7 @@
 sudo apt install nginx
 ```
 
-![screenshot](/img/Screenshot_1.png)
+![screenshot](img/Screenshot_1.png)
 
 2. Нам нужен серфтикат безопасности. Посколько мы на локальной виртуалочке, то не будем заморачиваться и выпустим самоподписанный.
  Создаём папку для сертификата
@@ -28,7 +28,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 ```
 
 при выполнии команды потребуется ввести некоторые данные, там всё интуитивно понятно.
-![screenshot](/img/Screenshot_2.png)
+![screenshot](/lab1/img/Screenshot_2.png)
 
 3. Открываем файл /etc/nginx/sites-available/default.  и добавляем следующие сточки:
 
