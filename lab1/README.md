@@ -120,6 +120,7 @@ sudo ln -s /etc/nginx/sites-available/hellow2.ru /etc/nginx/sites-enabled/
 ```
 И снова перезагружаем сервер.
 После этого проверим, всё ли мы правильно сделали. Для этого открываем браузер и переходим по адресам http://hellow1.ru и http://hellow2.ru.
+
 ![screenshot](img/Screenshot_14.png)
 ![screenshot](img/Screenshot_15.png)
 
@@ -133,6 +134,7 @@ location /hellowkitty.png {
 ```
 Сохраним, перезагрузим nginx.
 Проверим работу алиаса:
+
 ![screenshot](img/Screenshot_16.png)
 
 ## Итоги работы:
