@@ -25,7 +25,7 @@ services:
   nginx2:
     image: nginx
     ports:
-      - "8081:81"
+      - "8081:80"
     volumes:
       - ./html:/usr/share/nginx/html
 ```
@@ -79,7 +79,7 @@ services:
   nginx2:
     image: nginx:1.27.2-alpine
     ports:
-      - "8081:81"
+      - "8081:80"
     volumes:
       - nginx2-data:/usr/share/nginx/html
     deploy:
@@ -132,7 +132,7 @@ services:
   nginx2:
     image: nginx:1.27.2-alpine
     ports:
-      - "8081:81"
+      - "8081:80"
     volumes:
       - nginx2-data:/usr/share/nginx/html
     deploy:
