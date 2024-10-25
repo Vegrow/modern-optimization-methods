@@ -170,7 +170,7 @@ docker/
 
 compose.yaml:
 ```
-version: '3.9'
+version: '3.8'
 services:
   nginx1:
     build:
