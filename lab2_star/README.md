@@ -152,6 +152,59 @@ volumes:
   nginx2-data:
 ```
 
+### Немного практики
+Ставим докер-композ командой `sudo apt install docker-compose`
+Создаём папку для проекта, туда кладём .yaml файл и создаём две папки для контейнеров, где будут лежать для необходимые файлы.
+Схематично выглядит так:
+
+```
+docker/
+├── compose.yaml
+├── nginx1/
+│   ├── index.html
+│   └── Dockerfile
+└── nginx2/
+    ├── index.html
+    └── Dockerfile
+```
+
+compose.yaml:
+```
+version: '3.9'
+services:
+  nginx1:
+    build:
+      context: ./nginx1
+    ports:
+      - "8080:80"
+    networks:
+      - nginx1-network
+
+  nginx2:
+    build:
+      context: ./nginx1
+    ports:
+      - "8081:80"
+    networks:
+      - nginx2-network
+
+networks:
+  nginx1-network:
+  nginx2-network:
+```
+
+Переходим в директорию docker, выполняем команду `docker-compose up -d`:
+
+![screenshot](img/Screenshot_1.png)
+
+Проверяем работу контейнеров:
+
+![screenshot](img/Screenshot_2.png)
+
+![screenshot](img/Screenshot_3.png)
+
+Всё отлично, всё работает. Остановить контейнеры можно командой `docker-compose down`.
+
 ## В заключение
 
 Мы научились писать docker-compose конфиг, узнали о типичных ошибках, к чем они приводят, а так же как их обойти.
