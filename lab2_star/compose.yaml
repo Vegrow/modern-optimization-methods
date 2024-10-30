@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  nginx1:
+    build:
+      context: ./nginx1
+    ports:
+      - "8080:80"
+    networks:
+      - nginx1-network
+
+  nginx2:
+    build:
+      context: ./nginx2
+    ports:
+      - "8081:80"
+    networks:
+      - nginx2-network
+
+networks:
+  nginx1-network:
+  nginx2-network:
