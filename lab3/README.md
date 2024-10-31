@@ -26,6 +26,7 @@ sudo usermod -aG docker $USER && newgrp docker
 ```
 
 Снова стартуем миникуб, и ура, проблема ушла, всё завелось!
+
 ![image](img/Screenshot_3.png)
 
 Теперь нужно установить kubectl — консольну утилиту для работы с объектами кластера kubernetes.
@@ -55,9 +56,43 @@ eval $(minikube docker-env) && docker images
 
 ### Создание сервиса
 Создадим .yaml файл с описанием сервиса:
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: hellow-service
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+  selector:
+    app: my-hellow-app
+```
 
 ### Создание деплоймента
 Создадим .yaml файл с описанием деплоймента:
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellow-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-hellow-app
+    spec:
+      containers:
+        - name: hellow-container
+          image: my-hellow-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 40001
+  selector:
+    matchLabels:
+      app: my-hellow-app
+```
 
 ### Разворачиваем:
 Для этого выполняем следующую команду:
