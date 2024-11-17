@@ -115,12 +115,11 @@ minikube kubectl -- expose service grafana --namespace monitoring --type=NodePor
 
 ![image](img/Screenshot_16.png)
 
-Идём в браузер и пробуем попасть в графану:
+Идём в браузер и пробуем попасть в графану. В качестве логина используем `admin`, а пароль мы уже узнали чуть выше.
 
 ![image](img/Screenshot_17.png)
 
 Всё хорошо, графана работает.
-В качестве логина используем `admin`, а пароль мы уже узнали чуть выше.
 
 ### Добавление источника данных в Grafana
 
