@@ -60,7 +60,6 @@ minikube kubectl -- get pods -n monitoring
 
 ![image](img/Screenshot_7.png)
 
-
 Теперь нам нужно, чтобы сервис мониторинга был доступен не только внутри кластера, но и снаружи.
 Для этого делаем `expose` сервиса, и меняем его тип с ClusterIP на NodePort:
 ```
@@ -69,12 +68,15 @@ minikube kubectl -- expose service prometheus-server --namespace monitoring --ty
 Проверим, что всё хорошо, выполнив команду `minikube kubectl -- get svc -n monitoring`.
 Должны увидеть сервис с именем *prometheus-server-ext* и типом *NodePort*. 
 Так же мы видим внешний порт, по которому он доступен (в данном случае - 30247):
+
 ![image](img/Screenshot_9.png)
 
 Узнаем ip миникуба с помощью команды `minikube ip`:
- ![image](img/Screenshot_10.png)
+
+![image](img/Screenshot_10.png)
 
 Теперь у нас есть всё необходимое, чтобы открыть вебморду prometheus в браузере: 
+
 ![image](img/Screenshot_11.png)
 
 Ура, prometheus успешно установлен!
@@ -110,9 +112,11 @@ minikube kubectl -- expose service grafana --namespace monitoring --type=NodePor
 ![image](img/Screenshot_15.png)
 
 И проверяем всё той же командой: `minikube kubectl -- get svc -n monitoring`.
+
 ![image](img/Screenshot_16.png)
 
 Идём в браузер и пробуем попасть в графану:
+
 ![image](img/Screenshot_17.png)
 
 Всё хорошо, графана работает.
@@ -122,24 +126,30 @@ minikube kubectl -- expose service grafana --namespace monitoring --type=NodePor
 
 Для этого кликает по плитке `Data source`.
 Там выбираем prometheus:
+
 ![image](img/Screenshot_18.png)
 
 Указываем адрес сервиса prometheus:
+
 ![image](img/Screenshot_19.png)
 
 И нажимаем `Save & test`. Это сохранит настройки и проверит работу источника данных.
+
 ![image](img/Screenshot_20.png)
 
 ### Добавление дашборда
 
 В меню выбираем `Dashboards` и кликаем по `Import`.
 Используем уже готовый дашборд с номером 15757. Больше готовых дашбордов можно взять на сайте [графаны](https://grafana.com/grafana/dashboards/).
+
 ![image](img/Screenshot_23.png)
 
 Установим prometheus в качестве источника данных для дашборда и нажмём `Import`.
+
 ![image](img/Screenshot_24.png)
 
 В резьтате видим наш дашборд с различными метриками кластера:
+
 ![image](img/Screenshot_25.png)
 
 
